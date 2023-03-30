@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            font-family: sans-serif;
+        }
+        .outer{
+            position: fixed;
+            width: 100%;
+            height: 98%;
+        }
+        .leftsection,
+        .rightsection{
+            float: left;
+            width: 49%;
+            border: 1px solid black;
+            height: 100%;
+        }
+        .uppersection,.lowersection{
+            
+            width: 99%;
+            border: 1px solid black;
+            height: 50%;
+        }
+        .lowerleftsection,
+        .lowerrightsection{
+            float: left;
+            width: 49.5%;
+            border: 1px solid black;
+            height: 99%;
+        }
+        #preview{
+            width:100% ;
+            height:100%;
+        }
+        header{
+            background-color: black;
+            color: antiquewhite;
+            font-weight: bolder;
+            text-align: center;
+            font-size: 30px;
+            height: 30px;
+            width: 100%;
+        }
+        .editor{
+            width: 100%;
+            height: calc(100% - 30px);
+            overflow: auto;
+        }
+    </style>
+
+     
+    <div class="outer">
+        <div class="leftsection"> 
+        <div class="uppersection">
+           <header>HTML EDITOR</header>
+          <div class="editor" id="html-code" contenteditable="true" keyup="run()"></div>
+         </div>
+
+        <div class="lowersection"> 
+           <div class="lowerleftsection"> 
+           <header>CSS EDITOR</header>
+           <div class="editor" id="css-code" contenteditable="true" keyup="run()"></div>
+        </div>
+
+           <div class="lowerrightsection"> 
+           <header>JAVASCRIPT EDITOR</header>
+           <div class="editor" id="js-code" contenteditable="true" keyup="run()"></div>
+        </div>
+         </div>
+        </div> 
+
+    <div class="rightsection"> 
+     <iframe  class="editor" id="output"></iframe>
+    </div>
+    </div> 
+            
+
+    
+    <script type="text/javascript">
+        function run(){
+            let htmlCode=document.querySelector(".editor #html-code").value;
+            let cssCode  = "<style>"+document.querySelector(".editor #css-code")
+                .value+"</style>";
+            let jsCode=document.querySelector(".editor #js-code").value;
+            let output=document.querySelector(".editor #output");
+            //console.log(htmlCode,cssCode,jsCode,output);
+             output.contentDocument.body.innerHTML = htmlCode+cssCode;
+             output.contentWindow.eval(jscode);
+        }
+        document.querySelector(".editor #html-code").addEventListener("keyup",run);
+        document.querySelector(".editor #css-code").addEventListener("keyup",run);
+        document.querySelector(".editor #js-code").addEventListener("keyup",run);
+    </script>
+</body>
+</html>

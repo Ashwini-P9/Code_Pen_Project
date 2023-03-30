@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <style>
+    .outer{
+            position: fixed;
+            width: 90%;
+            height: 98%;
+             
+        }
+        .leftsection,.rightsection{
+            float: left;
+            width: 49%;
+            border: 1px solid black;
+            height: 100%;
+        }
+    .html{
+            width: 50%;
+            border: 1px solid black;
+            height: 50%;
+            display: inline;
+             
+    }
+    .css{
+        width: 50%;
+            border: 1px solid black;
+            height: 50%;display: inline;
+            
+    }
+    .js{
+            width: 50%;
+            border: 1px solid black;
+            height: 50%;
+         display: inline;
+            
+    }
+    header{
+            background-color: black;
+            color: antiquewhite;
+            font-weight: bolder;
+            text-align: center;
+            font-size: 30px;
+            height: 30px;
+            width: 100%;
+        }
+        #output{
+            width:100% ;
+            height:100%;
+        }
+   
+ </style>   
+    <div class="outer"> 
+    <div class="editor">
+        <div class="leftsection"> 
+         <div class="html" ><header>HTML EDITOR</header><textarea id="html-code" ></textarea></div> 
+         
+         <div class="css"><header>CSS EDITOR</header><textarea id="css-code"></textarea> </div>
+         <div class="js"><header>JS EDITOR</header><textarea id="js-code"></textarea> </div>
+        </div>     
+    <div class="rightsection"><iframe id="output"></iframe> </div>
+</div>
+        <script type="text/javascript">
+            function run(){
+                let htmlCode=document.querySelector(".editor #html-code").value;
+                let cssCode  = "<style>"+document.querySelector(".editor #css-code")
+                    .value+"</style>";
+                let jsCode=document.querySelector(".editor #js-code").value;
+                let output=document.querySelector(".editor #output");
+                //console.log(htmlCode,cssCode,jsCode,output);
+                 output.contentDocument.body.innerHTML = htmlCode+cssCode;
+                 output.contentWindow.eval(jscode);
+            }
+            document.querySelector(".editor #html-code").addEventListener("keyup",run);
+            document.querySelector(".editor #css-code").addEventListener("keyup",run);
+            document.querySelector(".editor #js-code").addEventListener("keyup",run);
+        </script>
+   
+</body>
+</html>
